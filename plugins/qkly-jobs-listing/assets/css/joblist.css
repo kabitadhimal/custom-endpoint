@@ -1,0 +1,663 @@
+.qkly-content {
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  font-family: "Montserrat";
+  max-width: 100% !important; 
+  background-color: transparent;
+}
+@media (min-width: 1500px) {
+  .qkly-content {
+    width: 1400px;
+  }
+}
+.qkly-content * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.qkly-job-list {
+  line-height: 1.4;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .qkly-job-list {
+    display: inline-flex;
+    gap: 30px;
+  }
+}
+.qkly-job-card {
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+@media (max-width: 767px) {
+  .qkly-job-card {
+    margin-bottom: 25px;
+  }
+}
+@media (min-width: 1024px) {
+  .qkly-job-card {
+    width: calc(50% - 15px);
+    margin-bottom: 0;
+  }
+}
+.qkly-job-card .qkly-icon {
+  font-size: 16px;
+  width: 20px;
+  margin-right: 5px;
+  float: left;
+  text-align: center;
+}
+.qkly-job-card .icon-location {
+  color: #ff6565;
+}
+.qkly-job-card .job-title {
+  padding: 0;
+}
+.qkly-job-card .job-title a {
+  color: #4d4f5c;
+  font-size: 20px;
+  font-family: "Montserrat";
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.qkly-job-card .job-title a.link-green {
+  color: #22b996;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+.qkly-job-card .job-detail {
+  display: flex;
+  border-bottom: 2px solid #f1f1f3;
+  flex-direction: column;
+  padding-top: 10px;
+}
+@media (min-width: 768px) {
+  .qkly-job-card .job-detail {
+    flex-direction: row;
+  }
+}
+.qkly-job-card .job-detail .company-img {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.qkly-job-card .job-detail .company-img img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.qkly-job-card .job-detail .job-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .qkly-job-card .job-detail .job-col {
+    justify-content: center;
+    /* align-items: center; */
+  }
+}
+.qkly-job-card .job-detail .job-col .job-label {
+  color: #b0b0b0;
+  font-family: "Source Sans Pro";
+  font-size: 11px;
+}
+.qkly-job-card .job-detail .job-col .job-info {
+  font-size: 12px;
+  font-family: "Montserrat";
+  color: #4d4f5c;
+}
+
+.qkly-job-card.qkly-popup .job-detail .job-col .job-info{
+  font-size: 15px;
+}
+
+
+.qkly-job-card .job-detail .about-company {
+  font-family: "Source Sans Pro";
+  color: #4d4f5c;
+  display: flex;
+  flex-direction: column;
+  flex: 1.5;
+  margin-bottom: 10px;
+  padding-right: 15px;
+}
+.qkly-job-card .job-detail .about-company .company-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.qkly-job-card .job-detail .about-company .company-location {
+  font-size: 14px;
+}
+.qkly-job-card .job-description {
+  font-family: "Source Sans Pro";
+  padding: 10px 0;
+  border-bottom: 2px solid #f1f1f3;
+}
+.qkly-job-card .job-description .title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+  display: block;
+}
+.qkly-job-card .job-description p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.qkly-job-card .tags {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+  border-bottom: 2px solid #f1f1f3;
+}
+
+.qkly-modal__content .qkly-job-card .tags{
+  border-top: 2px solid #f1f1f3;
+}
+
+
+.qkly-job-card .tags span {
+  padding: 0 5px;
+  color: #1e8dd1;
+  font-size: 12px;
+}
+.qkly-job-card .job-footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 0 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.qkly-job-card .job-footer .qkly-btn {
+  margin-left: auto;
+}
+.qkly-job-card .job-footer span {
+  font-size: 12px;
+}
+.qkly-job-card.qkly-popup {
+  width: 80%;
+  box-shadow: none;
+}
+.qkly-job-card.qkly-popup .job-detail {
+  padding: 20px 0 10px;
+}
+.qkly-job-card.qkly-popup .job-description {
+  padding: 20px 0;
+}
+@media (min-width: 1500px) {
+  .qkly-job-card.qkly-popup .job-description {
+    padding-right: 20%;
+  }
+}
+.qkly-job-card.qkly-popup .job-description .title {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+.qkly-job-card.qkly-popup .job-description p {
+  font-size: 17px;
+  margin-bottom: 0;
+}
+.qkly-btn {
+  padding: 8px 20px;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 30px;
+  font-family: "Montserrat";
+  text-align: center;
+  font-size: 14px;
+}
+.qkly-btn:hover,
+.qkly-btn:focus {
+  outline: none;
+  color: #fff;
+}
+.qkly-btn.btn-qkly-apply {
+  background: #00c299;
+  min-width: 100px;
+}
+.qkly-btn.btn-qkly-search {
+  background: #ac32d9 !important;
+  color: #ffffff !important;
+  min-width: 110px;
+}
+.qkly-btn.qkly-modal-open {
+  border: 0;
+  background: #22b996;
+  border-radius: 89.0784px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.qkly-custom-switch {
+  width: 60px;
+  margin-left: 10px;
+  position: relative;
+}
+.qkly-custom-switch .custom-control-input {
+  position: absolute;
+  top: -11px;
+  opacity: 0;
+  width: 100%;
+}
+.qkly-custom-switch .custom-control-input:focus {
+  outline: 0;
+}
+.qkly-custom-switch .custom-control-label::before {
+  width: 50px;
+  pointer-events: all;
+  border-radius: 35px;
+  position: absolute;
+  top: -11px;
+  display: flex;
+  height: 14px;
+  pointer-events: none;
+  content: "";
+  background-color: #b0b0b0;
+  border: #adb5bd solid 1px;
+}
+.qkly-custom-switch
+  .custom-control-input:checked
+  ~ .custom-control-label::after {
+  background-color: #009688;
+  transform: translateX(28px);
+}
+.qkly-custom-switch .custom-control-label::after {
+  content: "";
+  top: -16px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #efefef;
+  border-radius: 50%;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: absolute;
+}
+.qkly-custom-switch
+  .custom-control-input:checked
+  ~ .custom-control-label::before {
+  color: #fff;
+  background-color: #009688;
+  opacity: 0.5;
+}
+.qkly-filter {
+  padding: 20px 0;
+  justify-content: center;
+  align-items: baseline;
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .qkly-filter {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 1024px) {
+  .qkly-filter {
+    flex-direction: row;
+  }
+}
+.qkly-filter .filter-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+/* @media (min-width: 992px) {
+  .qkly-filter .filter-container {
+    align-items: center;
+  }
+}
+@media (min-width: 1700px) {
+  .qkly-filter .filter-container {
+    flex-direction: row;
+    width: auto;
+  }
+} */
+.qkly-filter .filter-container > div {
+  position: relative;
+  align-items: center;
+  display: flex;
+  max-width: 100%;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+@media (max-width: 1024px) {
+  .qkly-filter .filter-container > div {
+    min-width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .qkly-filter .filter-container > div {
+    padding: 0 10px;
+  }
+}
+@media (min-width: 1024px) {
+  .qkly-filter .filter-container > div {
+    margin-bottom: 10px;
+  }
+}
+.qkly-filter .filter-container > div.slide-select {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-flow: row;
+  justify-content: space-around;
+  margin: 15px 0;
+}
+@media (min-width: 1024px) {
+  .qkly-filter .filter-container > div.slide-select {
+    margin: 0;
+  }
+}
+.qkly-filter .input {
+  border: 1px solid #b0b0b0;
+  border-radius: 50px;
+  height: 40px;
+  padding-left: 45px;
+  overflow: hidden;
+  position: relative;
+}
+.qkly-filter .input:before {
+  font-family: "qkly" !important;
+  color: #ac32d9;
+  position: absolute;
+  font-size: 22px;
+  top: 9px;
+  left: 13px;
+}
+.qkly-filter .input input {
+    width: 100%;
+    border: none;
+    height: 100%;
+    font-size: 14px;
+    border-radius: 0;
+    line-height: 0 !important;
+    margin: 0;
+    padding: 0 !important;
+    font-weight: 400;
+    background: transparent !important;
+    font-family: "Montserrat";
+}
+.qkly-filter .input input:focus {
+  outline: none;
+}
+.qkly-filter .search {
+  align-items: flex-start;
+  flex-direction: column;
+}
+.qkly-filter .remote {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 0 15px;
+}
+@media (min-width: 768px) {
+  .qkly-filter .remote {
+    padding: 0;
+  }
+}
+.qkly-filter .remote span {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .qkly-filter .remote span {
+    margin-bottom: 0;
+  }
+}
+
+.qkly-filter .job-title .input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  font-weight: 600;
+  line-height: 22px;
+}
+@media (min-width: 1024px) {
+  .qkly-filter .job-title .input {
+    min-width: 200px;
+  }
+}
+@media (min-width: 1366px) {
+  .qkly-filter .job-title .input {
+    min-width: 340px;
+  }
+}
+.qkly-filter .job-title .input:before {
+  content: "\e903";
+}
+.qkly-filter .job-title .input ::-webkit-input-placeholder,
+.qkly-filter .job-location .input ::-webkit-input-placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+}
+.qkly-filter .job-title .input :-moz-placeholder,
+.qkly-filter .job-location .input :-moz-placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+  opacity: 1;
+}
+.qkly-filter .job-title .input ::-moz-placeholder,
+.qkly-filter .job-location .input ::-moz-placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+  opacity: 1;
+}
+.qkly-filter .job-title .input :-ms-input-placeholder,
+.qkly-filter .job-location .input :-ms-input-placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+}
+.qkly-filter .job-title .input ::-ms-input-placeholder,
+.qkly-filter .job-location .input ::-ms-input-placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+}
+.qkly-filter .job-title .input ::placeholder,
+.qkly-filter .job-location .input ::placeholder {
+  color: #b6b6b6;
+  font-weight: 500;
+}
+.qkly-filter .job-location .input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+@media (min-width: 992px) {
+  .qkly-filter .job-location .input {
+    min-width: 200px;
+  }
+}
+.qkly-filter .job-location .input:before {
+  content: "\e900";
+  font-size: 17px;
+  top: 6px;
+}
+.qkly-filter .advance-search {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+@media (max-width: 767px) {
+  .qkly-filter .advance-search {
+    flex-direction: row;
+    padding: 0;
+  }
+}
+.qkly-filter .advance-search a {
+  display: block;
+  margin-left: auto;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #4d4f5c;
+  font-size: 14px;
+}
+@media (max-width: 767px) {
+  .qkly-filter .advance-search a {
+    margin-left: 15px;
+  }
+}
+.qkly-filter .advance-search .btn {
+  height: 35px;
+}
+.qkly-benefits {
+  padding-top: 25px;
+}
+.qkly-benefits h2 {
+  font-size: 16px;
+  font-family: "Source Sans Pro";
+  margin-bottom: 15px;
+}
+.qkly-benefits .benefits-lists {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+.qkly-benefits .benefits-lists .list-item {
+  width: 33.333%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-flow: column;
+}
+@media (min-width: 768px) {
+  .qkly-benefits .benefits-lists .list-item {
+    flex-flow: row;
+  }
+}
+.qkly-benefits .benefits-lists h3 {
+  font-family: "Source Sans Pro";
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 0;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .qkly-benefits .benefits-lists h3 {
+    margin-left: 15px;
+  }
+}
+.qkly-job-card .tags {
+  font-family: "Source Sans Pro";
+}
+.qkly-filter .remote span {
+  font-size: 14px;
+  font-weight: 500;
+}
+.posted-date select.form-select {
+  border: 1px solid #b0b0b0;
+  width: 180px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px 35px 8px 14px;
+  font-weight: 500;
+  font-family: "Montserrat";
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+    no-repeat right transparent;
+  -webkit-appearance: none;
+  background-position-x: 145px;
+  font-size: 14px;
+}
+.posted-date select.form-select:focus {
+  outline: none;
+}
+.qkly-filter .filter-container > div.slide-select{
+  margin: 10px 0 25px;
+}
+
+@media (min-width: 1024px) {
+  .posted-date select.form-select {
+    margin: 0;
+  }
+}
+.posted-date select.form-select option {
+  font-weight: 500;
+}
+.qkly-filter .advance-search a {
+  font-size: 10px;
+  font-weight: 600;
+}
+.qkly-filter .input {
+  padding: 8px 8px 8px 45px;
+}
+.job-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0;
+}
+.qkly-job-card.qkly-popup {
+  position: relative;
+}
+.qkly-job-card.qkly-popup .qkly-modal-close {
+  position: absolute;
+  right: 0;
+}
+
+.entry .entry-content a.link-green{
+  align-self: center;
+}
+
+.link-green {
+  color: #22b996;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: 0.3s ease all;
+}
+.link-green:hover {
+  opacity: 0.8 !important;
+}
+.job-footer * {
+  font-family: "Source Sans Pro";
+}
+.job-footer .link-green {
+  margin-left: auto;
+}
+#qkly-job-search .twitter-typeahead{
+  display: initial !important;
+}
+
+/* .slide-select input[type=checkbox] + label, input[type=radio] + label{
+  display: initial;
+} */
+
+.slide-select input[type=checkbox] + label,  .slide-select input[type=radio] + label{
+  display: initial;
+  font-size: 14px;
+  padding: 0;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.qkly-job-list.qkly-single-list .qkly-job-card {
+  width: 100%;
+}

@@ -1,0 +1,76 @@
+<?php
+namespace DF\Modules\Posts\Skins;
+
+use Elementor\Controls_Manager;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Utils;
+use ElementorPro\Modules\Posts\Skins\Skin_Base;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+class Skin_Classic extends \ElementorPro\Modules\Posts\Skins\Skin_Classic {
+
+	protected $dfPostSubtitle = 'df_post_subtitle';
+
+	protected function _register_controls_actions() {
+		parent::_register_controls_actions();
+
+		add_action( 'elementor/element/posts/classic_section_design_layout/after_section_end', [ $this, 'register_additional_design_controls' ] );
+	}
+
+	public function get_id() {
+		return 'classic_v2';
+	}
+
+	public function get_title() {
+		return esc_html__( 'Classic_v2', 'elementor-pro' );
+	}
+
+
+
+	protected function register_meta_data_controls() {
+		parent::register_meta_data_controls();
+		$this->update_control(
+			'meta_data',
+			[
+				'label' => esc_html__( 'Meta Data', 'elementor-pro' ),
+				'label_block' => true,
+				'type' => Controls_Manager::SELECT2,
+				'default' => [ 'date', 'comments' ],
+				'multiple' => true,
+				'options' => [
+					'author' => esc_html__( 'Author', 'elementor-pro' ),
+					'date' => esc_html__( 'Date', 'elementor-pro' ),
+					'time' => esc_html__( 'Time', 'elementor-pro' ),
+					'comments' => esc_html__( 'Comments', 'elementor-pro' ),
+					'modified' => esc_html__( 'Date Modified', 'elementor-pro' ),
+					//custom post meta
+					$this->dfPostSubtitle => esc_html__( 'Subtitle', 'elementor-pro' ),
+				],
+				'separator' => 'before',
+			],
+		);
+	}
+
+	protected function renderCustomMeta()
+	{
+		$settings = $this->get_instance_value( 'meta_data' );
+		if ( !$settings || !in_array($this->dfPostSubtitle, $settings)) return;
+
+		$metaValue = get_post_meta(get_the_ID(),$this->dfPostSubtitle, true);
+		if(!$metaValue) return;
+
+		echo <<<EOF
+<div class="subtitle">{$metaValue}</div>
+EOF;
+	}
+
+	protected function render_title() {
+		$this->renderCustomMeta();
+		parent::render_title();
+	}
+
+
+}

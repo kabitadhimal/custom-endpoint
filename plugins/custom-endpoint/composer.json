@@ -1,0 +1,16 @@
+{
+    "name": "kabitadhimal/src",
+    "type": "psr-4",
+    "autoload": {
+        "psr-4": {
+            "Np\\Com\\Kabitadhimal\\": "kabitadhimal/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kabitadhimal",
+            "email": "himalisov@gmail.com"
+        }
+    ],
+    "require": {}
+}

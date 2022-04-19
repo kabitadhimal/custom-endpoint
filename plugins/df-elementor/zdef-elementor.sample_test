@@ -1,0 +1,81 @@
+<?php
+/*
+Plugin Name: Def Elementor
+*/
+
+
+use App\Modules\Posts\Skins\Skin_Classic;
+use App\Modules\Posts\Widgets\Posts;
+use Elementor\Widget_Base;
+
+/*
+add_action('plugins_loaded', function(){
+    add_action('elementor/widgets/register', function(){
+        require __DIR__.'/modules/posts/skins/skin-classic.php';
+        require __DIR__.'/modules/posts/widgets/posts.php';
+
+        //\Elementor\Plugin::instance()->widgets_manager->unregister('posts' );
+        \Elementor\Plugin::instance()->widgets_manager->register( new Posts() );
+
+
+        $keys = array_keys(\Elementor\Plugin::instance()->widgets_manager->_widget_types);
+       // var_dump($keys);
+
+    }, 10000);
+});
+*/
+
+//https://developers.elementor.com/docs/hooks/render-widget-content/
+/**
+ * https://www.php.net/manual/en/domxpath.query.php
+ * https://stackoverflow.com/questions/1390568/how-can-i-match-on-an-attribute-that-contains-a-certain-string
+ *
+ */
+add_filter( 'elementor/widget/render_content___X', function ($widget_content, $widget){
+    /** @var \ElementorPro\Modules\Posts\Widgets\Posts $widget */
+    if($widget->get_name() != "posts") return $widget_content;
+
+    $metaData = $widget->get_settings()['classic_meta_data'];
+    if(!in_array('comments', $metaData))  return $widget_content;
+
+	$doc = new DOMDocument();
+	$doc->loadHTML("<div>{$widget_content}</div>");
+
+	$xpath = new DOMXpath($doc);
+
+    $widget->query_posts();
+	/** @var \WP_Query $query */
+    $query = $widget->get_query();
+
+	while ( $query->have_posts() ) {
+		$query->the_post();
+
+		$postId = get_the_ID();
+
+		$metaValue = get_post_meta(get_the_ID(), 'test_custom_post', true);
+		if(!$metaValue) continue;
+
+		//$elements = $xpath->query("//article[@class*='post-57']");
+		$domQuery = "//article[contains(@class,'post-{$postId}')]//h3[contains(@class, 'elementor-post__title')]";
+		$elements = $xpath->query($domQuery);
+		if(!$elements || !$elements->length) continue;
+
+
+		$articleNode = $elements->item(0);
+
+		$articleMetaNode = $doc->createElement('div');
+		$articleMetaNode->nodeValue = $metaValue;
+
+		$articleNode->insertBefore($articleMetaNode);
+	}
+	return $doc->saveHTML();
+}, 10, 2 );
+
+
+
+add_action('plugins_loaded', function() {
+	add_action( 'elementor/widget/posts/skins_init', function ( \Elementor\Widget_Base $widget ) {
+		require __DIR__.'/modules/posts/skins/skin-classic.php';
+		$widget->add_skin( new Skin_Classic( $widget ) );
+	} );
+}, 999);

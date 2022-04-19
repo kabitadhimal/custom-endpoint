@@ -1,0 +1,292 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+.qkly-content {
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 1400px;
+  padding: 20px;
+  max-width: 100%;
+  font-family: "Montserrat"; }
+  .qkly-content * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+.qkly-job-list {
+  line-height: 1.4;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  @media (min-width: 1024px) {
+    .qkly-job-list {
+      display: inline-flex;
+      gap: 30px; } }
+
+.qkly-job-card {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%; }
+  @media (min-width: 1024px) {
+    .qkly-job-card {
+      width: calc(50% - 15px); } }
+  .qkly-job-card .qkly-icon {
+    font-size: 16px;
+    width: 20px;
+    margin-right: 5px;
+    float: left;
+    text-align: center; }
+  .qkly-job-card .icon-location {
+    color: #FF6565; }
+  .qkly-job-card .job-title {
+    padding: 10px 0; }
+    .qkly-job-card .job-title a {
+      color: #4d4f5c;
+      font-size: 20px;
+      font-family: "Montserrat";
+      text-decoration: none;
+      cursor: pointer; }
+  .qkly-job-card .job-detail {
+    display: flex;
+    border-bottom: 2px solid #F1F1F3;
+    flex-direction: column;
+    padding-top: 10px; }
+    @media (min-width: 768px) {
+      .qkly-job-card .job-detail {
+        flex-direction: row; } }
+    .qkly-job-card .job-detail .company-img {
+      margin-right: 10px;
+      margin-bottom: 10px; }
+      .qkly-job-card .job-detail .company-img img {
+        width: 45px;
+        height: 45px;
+        object-fit: cover;
+        border-radius: 50%; }
+    .qkly-job-card .job-detail .job-col {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-bottom: 10px;
+      justify-content: flex-start;
+      text-align: left; }
+      @media (min-width: 768px) {
+        .qkly-job-card .job-detail .job-col {
+          justify-content: center;
+          align-items: center; } }
+      .qkly-job-card .job-detail .job-col .job-label {
+        color: #B0B0B0;
+        font-family: "Source Sans Pro";
+        font-size: 11px; }
+      .qkly-job-card .job-detail .job-col .job-info {
+        font-size: 15px;
+        font-family: "Montserrat";
+        color: #4d4f5c; }
+    .qkly-job-card .job-detail .about-company {
+      font-family: "Source Sans Pro";
+      color: #4d4f5c;
+      display: flex;
+      flex-direction: column;
+      flex: 1.5;
+      margin-bottom: 10px; }
+      .qkly-job-card .job-detail .about-company .company-name {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px; }
+      .qkly-job-card .job-detail .about-company .company-location {
+        font-size: 14px; }
+  .qkly-job-card .job-description {
+    font-family: "Source Sans Pro";
+    padding: 10px 0;
+    border-bottom: 2px solid #F1F1F3; }
+    .qkly-job-card .job-description .title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      display: block; }
+    .qkly-job-card .job-description p {
+      font-size: 12px; }
+  .qkly-job-card .tags {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    border-bottom: 2px solid #F1F1F3; }
+    .qkly-job-card .tags span {
+      padding: 0 5px;
+      color: #1E8DD1;
+      font-size: 12px; }
+  .qkly-job-card .job-footer {
+    display: flex;
+    align-items: center;
+    padding: 10px 0; }
+    .qkly-job-card .job-footer .qkly-btn {
+      margin-left: auto; }
+    .qkly-job-card .job-footer span {
+      font-size: 12px; }
+  .qkly-job-card.qkly-popup {
+    width: 80%;
+    box-shadow: none; }
+    .qkly-job-card.qkly-popup .job-detail {
+      padding: 20px 0 10px; }
+    .qkly-job-card.qkly-popup .job-description {
+      padding: 20px 0; }
+      @media (min-width: 1500px) {
+        .qkly-job-card.qkly-popup .job-description {
+          padding-right: 20%; } }
+      .qkly-job-card.qkly-popup .job-description .title {
+        font-size: 18px;
+        margin-bottom: 25px; }
+      .qkly-job-card.qkly-popup .job-description p {
+        font-size: 17px;
+        margin-bottom: 50px; }
+
+.qkly-btn {
+  padding: 8px 20px;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 30px;
+  font-family: "Montserrat";
+  text-align: center;
+  font-size: 12px; }
+  .qkly-btn:hover, .qkly-btn:focus {
+    outline: none;
+    color: #fff; }
+  .qkly-btn.btn-qkly-apply {
+    background: #00c299;
+    min-width: 100px; }
+  .qkly-btn.btn-qkly-search {
+    background: #ac32d9;
+    min-width: 100px; }
+
+.qkly-custom-switch {
+  width: 60px;
+  margin-left: 10px;
+  position: relative; }
+  .qkly-custom-switch .custom-control-input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%; }
+    .qkly-custom-switch .custom-control-input:focus {
+      outline: 0; }
+  .qkly-custom-switch .custom-control-label::before {
+    width: 60px;
+    pointer-events: all;
+    border-radius: 35px;
+    position: absolute;
+    top: -10px;
+    display: flex;
+    height: 16px;
+    pointer-events: none;
+    content: "";
+    background-color: #b0b0b0;
+    border: #adb5bd solid 1px; }
+  .qkly-custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+    background-color: #00c299;
+    transform: translateX(30px); }
+  .qkly-custom-switch .custom-control-label::after {
+    content: "";
+    top: -15px;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    background-color: #efefef;
+    border-radius: 50%;
+    transition: transform .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    position: absolute; }
+  .qkly-custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    background-color: #009688;
+    opacity: 0.5; }
+
+.qkly-filter {
+  padding: 20px 0;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%; }
+  @media (min-width: 768px) {
+    .qkly-filter {
+      display: flex;
+      flex-direction: column; } }
+  @media (min-width: 1024px) {
+    .qkly-filter {
+      flex-direction: row; } }
+  .qkly-filter .filter-container {
+    display: flex;
+    flex-direction: column; }
+    @media (min-width: 768px) {
+      .qkly-filter .filter-container {
+        flex-direction: row; } }
+    @media (min-width: 1024px) {
+      .qkly-filter .filter-container {
+        flex-direction: row; } }
+    .qkly-filter .filter-container > div {
+      padding: 0 10px;
+      position: relative;
+      align-items: center;
+      display: flex;
+      max-width: 100%;
+      margin-bottom: 10px; }
+      @media (min-width: 1024px) {
+        .qkly-filter .filter-container > div {
+          margin-bottom: 0px; } }
+  .qkly-filter .input {
+    border: 1px solid #b0b0b0;
+    border-radius: 50px;
+    height: 35px;
+    padding-left: 45px;
+    overflow: hidden;
+    position: relative; }
+    .qkly-filter .input:before {
+      font-family: 'qkly' !important;
+      color: #AC32D9;
+      position: absolute;
+      font-size: 18px;
+      top: 7px;
+      left: 15px; }
+    .qkly-filter .input input {
+      width: 100%;
+      border: none;
+      height: 100%; }
+      .qkly-filter .input input:focus {
+        outline: none; }
+  .qkly-filter .search {
+    align-items: flex-start;
+    flex-direction: column; }
+  .qkly-filter .remote {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center; }
+    .qkly-filter .remote span {
+      font-size: 16px; }
+  .qkly-filter .job-title .input {
+    width: 100%;
+    max-width: 500px; }
+    .qkly-filter .job-title .input:before {
+      content: "\e903"; }
+  .qkly-filter .job-location .input {
+    width: 100%;
+    max-width: 300px; }
+    .qkly-filter .job-location .input:before {
+      content: "\e900"; }
+  .qkly-filter .advance-search {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px; }
+    .qkly-filter .advance-search a {
+      display: block;
+      margin-left: auto;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #4D4F5C;
+      font-size: 14px; }
+    .qkly-filter .advance-search .btn {
+      height: 35px; }

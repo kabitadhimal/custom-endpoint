@@ -1,0 +1,19 @@
+{
+    "name": "kabitadhimal/src",
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Np\\Com\\Kabitadhimal\\": "kabitadhimal/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kabitadhimal",
+            "email": "himalisov@gmail.com"
+        }
+    ],
+    "require": {}
+}

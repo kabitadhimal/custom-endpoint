@@ -1,0 +1,574 @@
+// Variables
+$font: 'Montserrat', sans-serif;
+
+$primary: #2C4C7C;
+
+$text: #333333;
+
+$white: #ffffff;
+
+$black: #000000;
+
+$light: 300;
+
+$regular: 400;
+
+$medium: 500;
+
+$semi: 600;
+
+$bold: 700;
+
+$extra: 800;
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+ul,ol{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+// --------------------------------------------------
+// Flexbox SASS mixins
+// The spec: http://www.w3.org/TR/css3-flexbox
+// --------------------------------------------------
+
+// Flexbox display
+@mixin flexbox {
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+}
+
+// Inline flex display
+@mixin inline-flex {
+display: -webkit-inline-box;
+display: -moz-inline-box;
+display: -webkit-inline-flex;
+display: -ms-inline-flexbox;
+display: inline-flex;
+}
+
+// The 'flex' shorthand
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+@mixin flex($fg: 1, $fs: 0, $fb: auto) {
+
+// Set a variable to be used by box-flex properties
+$fg-boxflex: $fg;
+
+// Box-Flex only supports a flex-grow value so lets grab the
+// first item in the list and just return that.
+@if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+}
+
+    -webkit-box: $fg-boxflex;
+    -moz-box: $fg-boxflex;
+-webkit-flex: $fg $fs $fb;
+    -ms-flex: $fg $fs $fb;
+        flex: $fg $fs $fb;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row (default) | row-reverse | column | column-reverse
+@mixin flex-direction($direction: row) {
+@if $direction == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+        -moz-box-direction: reverse;
+        -moz-box-orient: horizontal;
+} @else if $direction == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+        -moz-box-direction: normal;
+        -moz-box-orient: vertical;
+} @else if $direction == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+        -moz-box-direction: reverse;
+        -moz-box-orient: vertical;
+} @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+        -moz-box-direction: normal;
+        -moz-box-orient: horizontal;
+}
+-webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+        flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($value: nowrap) {
+// No Webkit/FF Box fallback.
+-webkit-flex-wrap: $value;
+@if $value == nowrap {
+    -ms-flex-wrap: none;
+} @else {
+    -ms-flex-wrap: $value;
+}
+flex-wrap: $value;
+}
+
+// Flex Direction and Wrap
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+@mixin flex-flow($values: (row nowrap)) {
+// No Webkit/FF Box fallback.
+-webkit-flex-flow: $values;
+    -ms-flex-flow: $values;
+        flex-flow: $values;
+}
+
+// Display Order
+// - applies to: flex items
+// <integer>
+@mixin order($int: 0) {
+-webkit-box-ordinal-group: $int + 1;
+    -moz-box-ordinal-group: $int + 1;
+            -webkit-order: $int;
+            -ms-flex-order: $int;
+                    order: $int;
+}
+
+// Flex grow factor
+// - applies to: flex items
+// <number>
+@mixin flex-grow($int: 1) {
+    -webkit-box-flex: $int;
+    -moz-box-flex: $int;
+-webkit-flex-grow: $int;
+            -ms-flex: $int;
+        flex-grow: $int;
+}
+
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number> 
+@mixin flex-shrink($int: 0) {
+-webkit-flex-shrink: $int;
+    -moz-flex-shrink: $int;
+            -ms-flex: $int;
+        flex-shrink: $int;
+}
+
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width> 
+@mixin flex-basis($value: auto) {
+-webkit-flex-basis: $value;
+        flex-basis: $value;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around 
+@mixin justify-content($value: flex-start) {
+@if $value == flex-start {
+    -webkit-box-pack: start;
+        -moz-box-pack: start;
+        -ms-flex-pack: start;
+} @else if $value == flex-end {
+    -webkit-box-pack: end;
+        -moz-box-pack: end;
+        -ms-flex-pack: end;
+} @else if $value == space-between {
+    -webkit-box-pack: justify;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+} @else if $value == space-around {
+        -ms-flex-pack: distribute;
+} @else {
+    -webkit-box-pack: $value;
+        -moz-box-pack: $value;
+        -ms-flex-pack: $value;
+}
+-webkit-justify-content: $value;
+        justify-content: $value;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch 
+@mixin align-content($value: stretch) {
+// No Webkit Box Fallback.
+-webkit-align-content: $value;
+@if $value == flex-start {
+    -ms-flex-line-pack: start;
+} @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+} @else {
+    -ms-flex-line-pack: $value;
+}
+align-content: $value;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch 
+@mixin align-items($value: stretch) {
+@if $value == flex-start {
+    -webkit-box-align: start;
+        -moz-box-align: start;
+        -ms-flex-align: start;
+} @else if $value == flex-end {
+    -webkit-box-align: end;
+        -moz-box-align: end;
+        -ms-flex-align: end;
+} @else {
+    -webkit-box-align: $value;
+        -moz-box-align: $value;
+        -ms-flex-align: $value;
+}
+-webkit-align-items: $value;
+        align-items: $value;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch 
+@mixin align-self($value: auto) {
+// No Webkit Box Fallback.
+-webkit-align-self: $value;
+@if $value == flex-start {
+    -ms-flex-item-align: start;
+} @else if $value == flex-end {
+    -ms-flex-item-align: end;
+} @else {
+    -ms-flex-item-align: $value;
+}
+align-self: $value;
+}
+
+
+
+
+.flex-wrap{
+    @include flex-wrap(wrap);
+}
+
+
+.d-flex{
+    @include flexbox();
+}
+
+.flex-wrap{
+    @include flex-wrap(wrap);
+}
+
+.items-center{
+    @include align-items(center);
+}
+
+.justify-content-between{
+    @include justify-content(space-between);
+}
+
+.flex-row{
+    flex-flow: column;
+    @media(min-width: 768px){
+        flex-flow: row;
+    }
+}
+
+
+body{
+    &.page-template-erc{
+        font-family: $font !important;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        *{
+            font-family: $font !important; 
+        }
+        p, li{
+            color: $text;
+        }
+        .container{
+            width: 1230px !important;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn{
+            font-size: 18px;
+            height: 50px;
+            min-width: 200px;
+        
+            padding: 0 30px;
+            transition: 0.3s ease all;
+            border-radius: 4px;
+            line-height: 50px;
+            text-decoration: none;
+            display: inline-block;
+            &.btn-primary{
+                background-color: $primary;
+                color: $white;
+                &:hover{
+                    opacity: 0.6;
+                }
+            }
+        }
+        
+        h1,h2,h3,h4,h5{
+            display: inline-block;
+            width: 100%;
+        }
+        
+        h2{
+            text-transform: uppercase;
+            font-weight: $semi;
+            font-size: 24px;
+            line-height: 38px;
+            color: $primary;
+            @media(min-width: 768px){
+                font-size: 28px;
+                line-height: 46px;
+            }
+            @media(min-width: 1200px){
+                font-size: 32px;
+                line-height: 52px;
+            }
+        }
+        
+        
+        // banner section
+        .inner-banner{
+            background-color: #F0F5FA;
+            padding: 60px 0;
+            @media(max-width: 767px){
+                text-align: center;
+            }
+            @media(min-width: 1200px){
+                padding: 100px 0;
+            }
+            .banner-contents{
+                @media(max-width: 767px){
+                    margin-bottom: 30px;
+                } 
+            }
+            h1{
+                font-weight: $semi;
+                font-size: 26px;
+                margin-bottom: 30px;
+                line-height: 34px;
+                color: $text;
+                @media(min-width: 991px){
+                    font-size: 30px;
+                    margin-bottom: 30px;
+                }
+                @media(min-width: 1366px){
+                    font-size: 36px;
+                    line-height: 48px;
+                }
+                span{
+                    color: $primary;
+                    font-weight: $bold;
+                }
+            }
+            .banner-image{
+                @media(min-width: 1200px){
+                    padding-right: 150px
+                }
+            }
+        }
+        
+        .section-with-bg{
+            background-color: $primary;
+            color: $white;
+            text-align: center;
+            padding: 60px 0 40px;
+            .content-wrap{
+                @media(min-width: 991px){
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+            }
+            iframe{
+                margin-bottom: 40px;
+                @media(max-width: 767px){
+                    width: 100%;
+                }
+            }
+            h2{
+                margin-bottom: 40px;
+                margin-top: 0;
+                color: $white;
+                @media(min-width: 1200px){
+        
+                }
+            }
+            p{
+                font-size: 16px;
+                line-height: 28px;
+                color: $white;
+                margin-bottom: 30px;
+                margin-top: 0;
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
+        }
+        
+        
+        // list items section
+        .list-items{
+            .container{
+                padding: 60px 15px;
+                @media(min-width: 1024px){
+                    width: 916px !important;
+                }
+            }
+            h3{
+                font-weight: $bold;
+                font-size: 20px;
+                line-height: 29px;
+                color: $text !important
+                
+            }
+            ul{
+                padding-left: 20px !important;
+                margin: 0 !important;
+                li{
+                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: $semi;
+                    margin-bottom: 20px;
+                    @media(min-width: 991px){
+                        font-size: 18px;
+                    }
+                    &:last-of-type{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        
+        
+        // LIGHT BG SECTION
+        .light-bg-section{
+            background-color: #F0F5FA;
+            padding: 80px 0;
+            .content-wrap{
+                padding-right: 50px;
+                @media(min-width: 1200px){
+                    padding-right: 190px;
+                }
+                @media(max-width: 767px){
+                    order: 2;
+                }
+            }
+            .content-image{
+                max-width: 350px;
+                margin-bottom: 30px;
+                @media(min-width: 768px){
+                    min-width: 300px;
+                    margin-bottom: 0;
+                }
+                @media(min-width: 1200px){
+                    min-width: 395px;
+                }
+                @media(max-width: 767px){
+                    order: 1;
+                }
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            h2{
+                color: $primary;
+                margin-bottom: 30px;
+                line-height: 32px;
+                @media(min-width: 1366px){
+                    line-height: 52px;
+                }
+            }
+            p{
+                font-size: 16px;
+                font-weight: $regular;
+                line-height: 28px;
+            }
+            ul{
+                list-style: none;
+                padding-left: 0 !important;
+                margin-top: 25px;
+                li{
+                    position: relative;
+                    padding-left: 40px;
+                    margin-bottom: 25px;
+                    &:before{
+                        content: "";
+                        display: inline-block;
+                        width: 24px;
+                        height: 24px;
+                        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 11.0857V12.0057C21.9988 14.1621 21.3005 16.2604 20.0093 17.9875C18.7182 19.7147 16.9033 20.9782 14.8354 21.5896C12.7674 22.201 10.5573 22.1276 8.53447 21.3803C6.51168 20.633 4.78465 19.2518 3.61096 17.4428C2.43727 15.6338 1.87979 13.4938 2.02168 11.342C2.16356 9.19029 2.99721 7.14205 4.39828 5.5028C5.79935 3.86354 7.69279 2.72111 9.79619 2.24587C11.8996 1.77063 14.1003 1.98806 16.07 2.86572' stroke='%2371A040' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M22 4.00574L12 14.0157L9 11.0157' stroke='%2371A040' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+                        background-repeat: no-repeat;
+                        vertical-align: middle;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                    h4{
+                        color: $primary;
+                        margin: 0 0 10px;
+                        font-size: 18px;
+                        text-transform: uppercase;
+                        display: inline-block;
+                        width: auto;
+                        font-weight: $bold;
+                    }
+                    p{
+                        margin: 0;
+                        line-height: 28px;
+                    }
+                }
+            }
+        }
+        
+        .faq{
+            padding: 60px 0 100px;
+            // .container{
+            //     @media(min-width: 1200px){
+            //         width: 1072px !important;
+            //     }
+            // }
+            h2{
+                @media(min-width: 1200px){
+                  margin-bottom: 50px !important;
+                }
+            }
+            ul{
+                list-style: none !important;
+                padding: 0 !important;
+                li{
+                    margin-bottom: 40px;
+                    h4{
+                        font-size: 20px;
+                        line-height: 24px;
+                        margin-bottom: 14px;
+                        margin-top: 0;
+                        font-weight: $semi;
+                        color: $text !important;
+                    }
+                    p{
+                        font-size: 16px;
+                        line-height: 28px;
+                        font-weight: $regular;
+                    }
+                }
+            }
+        }
+    }
+}
+
